@@ -1,9 +1,11 @@
 'use strict';
 
-const CategoryController = require('../controllers/categorycontroller');
+const CategoryController = require('../db_mysql/controllers/categorycontroller');
 var router = express.Router();
 
-router.get('checkcategory/:id?',function(req,res,next){
+router.get('/categorycontroller/checkcategory/:id?',function(req,res,next){
+
+    log.info('######################### entrei nesse caralho');
  
     CategoryController.checkCategory(req.params.id, function(err, rows){
 
@@ -38,11 +40,12 @@ router.get('checkcategory/:id?',function(req,res,next){
 
                 res.json(categoryObj);
             }
-        }
+        } else
+            res.json(err);
     });
 });
 
-router.get('getallcategories/',function(req,res,next){
+router.get('categorycontroller/getallcategories/',function(req,res,next){
  
     CategoryController.getAllCategories(function(err, rows){
 
@@ -66,7 +69,8 @@ router.get('getallcategories/',function(req,res,next){
                 }
 
                 res.json(result);
-            }
+            } else
+                res.json(err);
         }
     });
 });

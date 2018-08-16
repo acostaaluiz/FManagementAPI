@@ -1,4 +1,4 @@
-var mysql=require('mysql');
+var mysql = require('mysql');
  var connection=mysql.createPool({
  
 host:'jdbc:mysql://localhost:3306/',
