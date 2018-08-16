@@ -10,7 +10,7 @@ return db.query("select category, creation_data, last_update_data from category"
  
 return db.query("select category, creation_data, last_update_data from category where category = ?", [id], callback);
  },
- addCategory:function(CategoryController,callback){
+ addCategory:function(Category,callback){
 
  return db.query("insert into category values(?, ?, ?)", [Category.category, Category.creation_data, Category.last_update_data], callback);
  },

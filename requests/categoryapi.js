@@ -1,6 +1,7 @@
 'use strict';
 
 const CategoryController = require('../controllers/categorycontroller');
+var router = express.Router();
 
 router.get('checkcategory/:id?',function(req,res,next){
  
@@ -41,7 +42,7 @@ router.get('checkcategory/:id?',function(req,res,next){
     });
 });
 
-router.get('getallcategories',function(req,res,next){
+router.get('getallcategories/',function(req,res,next){
  
     CategoryController.getAllCategories(function(err, rows){
 
@@ -63,9 +64,11 @@ router.get('getallcategories',function(req,res,next){
                         });
                     }
                 }
-                
+
                 res.json(result);
             }
         }
     });
 });
+
+module.exports = router;
