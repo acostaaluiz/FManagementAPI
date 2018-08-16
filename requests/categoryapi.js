@@ -1,3 +1,7 @@
+'use strict';
+
+const CategoryController = require('../controllers/categorycontroller');
+
 router.get('checkcategory/:id?',function(req,res,next){
  
     CategoryController.checkCategory(req.params.id, function(err, rows){
@@ -32,6 +36,35 @@ router.get('checkcategory/:id?',function(req,res,next){
                 };
 
                 res.json(categoryObj);
+            }
+        }
+    });
+});
+
+router.get('getallcategories',function(req,res,next){
+ 
+    CategoryController.getAllCategories(function(err, rows){
+
+        if(!err){
+
+            if(numRows > 0){
+
+                var result = [];
+                
+                for (var category in rows) {
+
+                    if (goals.hasOwnProperty(name)) {
+
+                        result.push({
+
+                            category: category.category, 
+                            creation_data: category.creation_data,
+                            last_update_data: category.last_update_data
+                        });
+                    }
+                }
+                
+                res.json(result);
             }
         }
     });
