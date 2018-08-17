@@ -1,38 +1,43 @@
-router.get('checkcategoryincome/:id?',function(req,res,next){
+'use strict';
+
+const CategoryIncomeController = require('../db_mysql/controllers/categoryincomecontroller');
+var express = require('express');
+var router = express.Router();
+
+router.get('/checkcategoryincome/:id?',function(req,res,next){
+
+    console.log('######################### Iniciando checkcategoryincome.');
  
-    CategoryController.checkCategoryIncome(req.params.id, function(err, rows){
+    CategoryIncomeController.checkCategoryIncome(req.params.id, function(err, rows){
 
         if(!err){
 
             var numRows = rows.length;
-            var categoryObj;
-            var category;
+            var categoryIncomeObj;
+            var categoryIncome;
             var response;
 
             if(numRows > 0){
 
-                category = rows[0].category;
-                response = "INVALID_CATEGORY";
+                categoryIncome = rows[0].categoryIncome;
+                response = "INVALID_CATEGORY_INCOME";
 
-                categoryObj = {
-
-                    category: category,
+                categoryIncomeObj = {
+                    categoryIncome: categoryIncome,
                     response: response
                 };
 
-                res.json(categoryObj);
-
-
+                res.json(categoryIncomeObj);
             } else {
 
-                categoryObj = {
-
-                    category: req.params.id,
+                categoryIncomeObj = {
+                    categoryIncome: req.params.id,
                     response: "OK"
                 };
 
-                res.json(categoryObj);
+                res.json(categoryIncomeObj);
             }
-        }
+        } else
+            res.json(err);
     });
 });

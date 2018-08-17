@@ -6,7 +6,7 @@ var Expense={
      
     return db.query("select expense, expense_date, category_fk, price, frequency_fk, creation_data, last_update_data from expense",callback);
     },
-     chheckExpense:function(id, callback){
+     checkExpense:function(id, callback){
      
     return db.query("select expense, creation_data, last_update_data where expense = ?", [id], callback);
      },
