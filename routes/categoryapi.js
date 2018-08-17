@@ -6,7 +6,7 @@ var router = express.Router();
 
 router.get('/checkcategory/:id?',function(req,res,next){
 
-    console.log('######################### entrei nesse caralho');
+    console.log('######################### Iniciando checkcategory.');
  
     CategoryController.checkCategory(req.params.id, function(err, rows){
 

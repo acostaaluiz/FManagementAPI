@@ -13,6 +13,7 @@ var dateRouter = require('./routes/dateapi');
 var expenseRouter = require('./routes/expenseapi');
 var frequencyRouter = require('./routes/frequencyapi');
 var incomeRouter = require('./routes/incomeapi');
+var loginRouter = require('./routes/loginapi')
 
 var app = express();
 
@@ -30,10 +31,11 @@ app.use('/users', usersRouter);
 app.use('/categorycontroller', categoryRouter);
 app.use('/categoryincomecontroller', categoryIncomeRouter);
 app.use('/creditcardcontroller', creditCardRouter);
-app.use('/datecontroller', dateRouter);
+//app.use('/datecontroller', dateRouter);
 app.use('/expensecontroller', expenseRouter);
-app.use('/frequencycontroller', frequencyRouter);
+//app.use('/frequencycontroller', frequencyRouter);
 app.use('/incomecontroller', incomeRouter);
+app.use('/logincontroller', loginRouter);
 
 app.use(function(req, res, next) {
   next(createError(404));
