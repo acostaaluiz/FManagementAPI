@@ -1,11 +1,11 @@
 var mysql = require('mysql');
  var connection=mysql.createPool({
  
-host:'jdbc:mysql://localhost:3306/',
+host:'localhost',
  user:'root',
  password:'',
- database:'fmanagement'
- 
+ database:'fmanagement',
+ port:3306
 });
 
  module.exports=connection;

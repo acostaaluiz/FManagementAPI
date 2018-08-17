@@ -1,11 +1,12 @@
 'use strict';
 
 const CategoryController = require('../db_mysql/controllers/categorycontroller');
+var express = require('express');
 var router = express.Router();
 
-router.get('/categorycontroller/checkcategory/:id?',function(req,res,next){
+router.get('/checkcategory/:id?',function(req,res,next){
 
-    log.info('######################### entrei nesse caralho');
+    console.log('######################### entrei nesse caralho');
  
     CategoryController.checkCategory(req.params.id, function(err, rows){
 
@@ -45,7 +46,7 @@ router.get('/categorycontroller/checkcategory/:id?',function(req,res,next){
     });
 });
 
-router.get('categorycontroller/getallcategories/',function(req,res,next){
+router.get('/getallcategories/',function(req,res,next){
  
     CategoryController.getAllCategories(function(err, rows){
 
