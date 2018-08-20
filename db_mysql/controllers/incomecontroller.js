@@ -23,7 +23,7 @@ var Income={
         Income.last_update_data], 
         callback);
      },
-     deleteExpense:function(id, callback){
+     deleteIncome:function(id, callback){
     
       return db.query("delete from income where income = ?", [id], callback);
      }

@@ -131,4 +131,22 @@ router.post('/savecategory',function(req,res,next){
     });
 });
 
+router.delete('/deletecategory/:id?',function(req,res,next){
+ 
+    CategoryController.deleteCategory(req.params.id,function(err,count){
+     
+        if(err)
+        res.json(err);  
+        else{
+            var categoryObj = {
+
+                category: req.params.id,
+                response: "OK"
+            };
+
+            res.json(categoryObj);
+        }
+    });
+});
+
 module.exports = router;

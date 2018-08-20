@@ -131,4 +131,22 @@ router.post('/saveexpense',function(req,res,next){
     });
 });
 
+router.delete('/deleteexpense/:id?',function(req,res,next){
+ 
+    ExpenseController.deleteExpense(req.params.id,function(err,count){
+     
+        if(err)
+        res.json(err);  
+        else{
+            var expenseObj = {
+
+                expense: req.params.id,
+                response: "OK"
+            };
+
+            res.json(expenseObj);
+        }
+    });
+});
+
 module.exports = router;

@@ -127,4 +127,22 @@ router.post('/savecreditcard',function(req,res,next){
     });
 });
 
+router.delete('/deletecreditcard/:id?',function(req,res,next){
+ 
+    CreditCardController.deleteCreditCard(req.params.id,function(err,count){
+     
+        if(err)
+        res.json(err);  
+        else{
+            var creditCardObj = {
+
+                creditCard: req.params.id,
+                response: "OK"
+            };
+
+            res.json(creditCardObj);
+        }
+    });
+});
+
 module.exports = router;

@@ -127,4 +127,22 @@ router.post('/savecategoryincome',function(req,res,next){
     });
 });
 
+router.delete('/deleteincomecategory/:id?',function(req,res,next){
+ 
+    CategoryIncomeController.deleteCategoryIncome(req.params.id,function(err,count){
+     
+        if(err)
+        res.json(err);  
+        else{
+            var categoryIncomeObj = {
+
+                categoryIncome: req.params.id,
+                response: "OK"
+            };
+
+            res.json(categoryIncomeObj);
+        }
+    });
+});
+
 module.exports = router;

@@ -3,8 +3,7 @@ var db = require('../dbconnection');
 var Frequency={
  
     getAllFrequencies:function(callback){
-     
-    return db.query("select position, frequency from frequency",callback);
+        return db.query("select position, frequency from frequency",callback);
     }
 };
 

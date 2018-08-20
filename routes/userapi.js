@@ -29,6 +29,8 @@ router.get('/checkuser/:id?/:password?/', function(req,res,next){
 
                     const token = jwt.sign({userObj}, secret_key);
                     
+                    console.log('######################### generatedtoken: ' + token);
+
                     userObj = {
 
                         user: rows[0].user,
@@ -60,20 +62,22 @@ router.get('/checkuser/:id?/:password?/', function(req,res,next){
     });
 });
 
-router.post('/savecategory',function(req,res,next){
+router.post('/saveuser',function(req,res,next){
+
+    console.log('######################### Iniciando saveuser.');
  
-    CategoryController.addCategory(req.body,function(err,count){
+    UserController.addUser(req.body,function(err,count){
         if(err)
             res.json(err);
         else{
 
-            var categoryObj = {
+            var userObj = {
 
-                category: req.params.id,
+                user: req.params.id,
                 response: "OK"
              };
 
-            res.json(categoryObj);
+            res.json(userObj);
         }
     });
 });

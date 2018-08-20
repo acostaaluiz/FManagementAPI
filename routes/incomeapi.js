@@ -132,4 +132,22 @@ router.post('/saveincome',function(req,res,next){
     });
 });
 
+router.delete('/deleteincome/:id?',function(req,res,next){
+ 
+    IncomeController.deleteIncome(req.params.id,function(err,count){
+     
+        if(err)
+        res.json(err);  
+        else{
+            var incomeObj = {
+
+                income: req.params.id,
+                response: "OK"
+            };
+
+            res.json(incomeObj);
+        }
+    });
+});
+
 module.exports = router;
