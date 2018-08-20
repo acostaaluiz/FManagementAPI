@@ -4,7 +4,7 @@ var User={
  
      checkUser:function(id, callback){
      
-    return db.query("select user, password, email, telephone, creation_data, last_update_data where user = ?", [id], callback);
+    return db.query("select user, password, email, telephone, creation_data, last_update_data from user where user = ?", [id], callback);
      },
      addUser:function(User, callback){
     

@@ -13,7 +13,8 @@ var dateRouter = require('./routes/dateapi');
 var expenseRouter = require('./routes/expenseapi');
 var frequencyRouter = require('./routes/frequencyapi');
 var incomeRouter = require('./routes/incomeapi');
-var loginRouter = require('./routes/loginapi')
+var loginRouter = require('./routes/loginapi');
+var userRouter = require('./routes/userapi');
 
 var app = express();
 
@@ -21,6 +22,7 @@ app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'pug');
 
 app.use(logger('dev'));
+
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
@@ -36,6 +38,7 @@ app.use('/expensecontroller', expenseRouter);
 //app.use('/frequencycontroller', frequencyRouter);
 app.use('/incomecontroller', incomeRouter);
 app.use('/logincontroller', loginRouter);
+app.use('/usercontroller', userRouter);
 
 app.use(function(req, res, next) {
   next(createError(404));
