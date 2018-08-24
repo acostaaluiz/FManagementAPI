@@ -1,4 +1,5 @@
 var db=require('../dbconnection');
+var dateHelper = require('../../utility/date.helper.js');
  
 var CategoryIncome={
  
@@ -11,9 +12,10 @@ var CategoryIncome={
     return db.query("select category_income, creation_data, last_update_data from categoryincome where category_income = ?", [id], callback);
      },
      addCategoryIncome:function(CategoryIncome, callback){
+
+        var dateTimeNow = dateHelper.getDateTimeMySQLFormat();
     
-     return db.query("insert into categoryincome values(?, ?, ?)", [CategoryIncome.category_income, 
-        CategoryIncome.creation_data, CategoryIncome.last_update_data], callback);
+        return db.query("insert into categoryincome values(?, ?, ?)", [CategoryIncome.category_income, dateTimeNow, dateTimeNow], callback);
      },
      deleteCategoryIncome:function(id,callback){
     

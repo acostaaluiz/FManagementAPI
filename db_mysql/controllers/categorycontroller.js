@@ -1,4 +1,5 @@
 var db = require('../dbconnection');
+var dateHelper = require('../../utility/date.helper.js');
  
 var Category={
  
@@ -12,7 +13,9 @@ return db.query("select category, creation_data, last_update_data from category 
  },
  addCategory:function(Category,callback){
 
- return db.query("insert into category values(?, ?, ?)", [Category.category, Category.creation_data, Category.last_update_data], callback);
+    var dateTimeNow = dateHelper.getDateTimeMySQLFormat();
+
+    return db.query("insert into category values(?, ?, ?)", [Category.category, dateTimeNow, dateTimeNow], callback);
  },
  deleteCategory:function(id,callback){
 

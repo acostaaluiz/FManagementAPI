@@ -5,7 +5,6 @@ var cookieParser = require('cookie-parser');
 var logger = require('morgan');
 
 var indexRouter = require('./routes/index');
-var usersRouter = require('./routes/users');
 var categoryRouter = require('./routes/categoryapi');
 var categoryIncomeRouter = require('./routes/categoryincomeapi');
 var creditCardRouter = require('./routes/creditcardapi');
@@ -13,7 +12,6 @@ var dateRouter = require('./routes/dateapi');
 var expenseRouter = require('./routes/expenseapi');
 var frequencyRouter = require('./routes/frequencyapi');
 var incomeRouter = require('./routes/incomeapi');
-var loginRouter = require('./routes/loginapi');
 var userRouter = require('./routes/userapi');
 
 var app = express();
@@ -28,8 +26,6 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use('/', indexRouter);
-app.use('/users', usersRouter);
 app.use('/categorycontroller', categoryRouter);
 app.use('/categoryincomecontroller', categoryIncomeRouter);
 app.use('/creditcardcontroller', creditCardRouter);
@@ -37,7 +33,6 @@ app.use('/datecontroller', dateRouter);
 app.use('/expensecontroller', expenseRouter);
 app.use('/frequencycontroller', frequencyRouter);
 app.use('/incomecontroller', incomeRouter);
-app.use('/logincontroller', loginRouter);
 app.use('/usercontroller', userRouter);
 
 app.use(function(req, res, next) {

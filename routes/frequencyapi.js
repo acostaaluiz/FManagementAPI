@@ -68,3 +68,5 @@ router.get('/getallfrequencies',function(req,res,next){
             res.json(err);
     });
 });
+
+module.exports = router;

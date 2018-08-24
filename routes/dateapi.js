@@ -61,3 +61,5 @@ router.get('/getdatetimenow', function(req,res,next){
             res.json(err);
     });
 });
+
+module.exports = router;

@@ -1,4 +1,5 @@
 var db = require('../dbconnection');
+var dateHelper = require('../../utility/date.helper.js');
  
 var User={
  
@@ -7,14 +8,16 @@ var User={
     return db.query("select user, password, email, telephone, creation_data, last_update_data from user where user = ?", [id], callback);
      },
      addUser:function(User, callback){
+
+        var dateTimeNow = dateHelper.getDateTimeMySQLFormat();
     
-     return db.query("insert into user (user, email, password, telephone, creation_data, last_update_data) VALUES (?,?,?,?,?,?)", 
-     [User.user, 
-        User.email, 
-        User.password,
-        User.telephone,
-        User.creation_data,
-        User.last_update_data], 
+        return db.query("insert into user (user, email, password, telephone, creation_data, last_update_data) VALUES (?,?,?,?,?,?)", 
+        [User.user, 
+            User.email, 
+            User.password,
+            User.telephone,
+            dateTimeNow,
+            dateTimeNow], 
         callback);
      },
      deleteUser:function(id, callback){

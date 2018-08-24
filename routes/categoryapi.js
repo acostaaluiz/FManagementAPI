@@ -41,11 +41,11 @@ router.use(function(req, res, next) {
       }
 });
 
-router.get('/checkcategory/:id?', function(req,res,next){
+router.post('/savecategory',function(req,res,next){
 
     console.log('######################### Iniciando checkcategory.');
  
-    CategoryController.checkCategory(req.params.id, function(err, rows){
+    CategoryController.checkCategory(req.body.category, function(err, rows){
 
         if(!err){
 
@@ -55,6 +55,8 @@ router.get('/checkcategory/:id?', function(req,res,next){
             var response;
 
             if(numRows > 0){
+
+                console.log('######################### INVALID_CATEGORY.');
 
                 category = rows[0].category;
                 response = "INVALID_CATEGORY";
@@ -67,16 +69,33 @@ router.get('/checkcategory/:id?', function(req,res,next){
 
                 res.json(categoryObj);
 
-
             } else {
 
-                categoryObj = {
+                console.log('######################### Iniciando savecategory.');
 
-                    category: req.params.id,
-                    response: "OK"
-                };
+                CategoryController.addCategory(req.body,function(err,count){
 
-                res.json(categoryObj);
+                    console.log('######################### TESTE.');
+
+                    if(err){
+
+                        console.log('######################### saving: ' + JSON.stringify(err));
+
+                        res.json(err);
+                    }
+                    else{
+            
+                        var categoryObj = {
+            
+                            category: req.body.category,
+                            response: "OK"
+                         };
+
+                        console.log('######################### saving: ' + JSON.stringify(categoryObj));
+            
+                        res.json(categoryObj);
+                    }
+                });
             }
         } else
             res.json(err);
@@ -84,6 +103,8 @@ router.get('/checkcategory/:id?', function(req,res,next){
 });
 
 router.get('/getallcategories',function(req,res,next){
+
+    console.log('######################### Iniciando getallcategories.');
  
     CategoryController.getAllCategories(function(err, rows){
 
@@ -110,24 +131,6 @@ router.get('/getallcategories',function(req,res,next){
 
         } else
             res.json(err);
-    });
-});
-
-router.post('/savecategory',function(req,res,next){
- 
-    CategoryController.addCategory(req.body,function(err,count){
-        if(err)
-            res.json(err);
-        else{
-
-            var categoryObj = {
-
-                category: req.params.id,
-                response: "OK"
-             };
-
-            res.json(categoryObj);
-        }
     });
 });
 

@@ -8,7 +8,7 @@ var jwt = require('jsonwebtoken');
 
 router.use(function(req, res, next) {
 
-    var token = req.body.token || req.query.token || req.headers['x-access-token'];
+    var token = req.headers['x-access-token'];
 
     const login = {
         id: req.params.id
